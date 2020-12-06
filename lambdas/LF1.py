@@ -5,10 +5,6 @@ import time
 
 
 def lambda_handler(event, context):
-    # TODO implement
-    #print(json.dumps(event, indent=4, sort_keys=True))
-    #bucket_name = 'photoboy'
-    #key_name = 'download.jpg'
     s3_info = event['Records'][0]['s3']
     bucket_name = s3_info['bucket']['name']
     key_name = s3_info['object']['key']
@@ -31,7 +27,7 @@ def lambda_handler(event, context):
     format = {'objectKey':key_name,'bucket':bucket_name,'createdTimestamp':timestamp,'labels':labels}
     #required_json = json.dumps(format)
     #print(required_json)
-    url = "https://vpc-photos-b4al4b3cnk5jcfbvlrgxxu3vhu.us-east-1.es.amazonaws.com/photos/0"
+    url = 'url' #insert url here
     headers = {"Content-Type": "application/json"}
     #url2 = "https://vpc-photos-b4al4b3cnk5jcfbvlrgxxu3vhu.us-east-1.es.amazonaws.com/photos/_search?pretty=true&q=*:*"
     r = requests.post(url, data=json.dumps(format).encode("utf-8"), headers=headers)
